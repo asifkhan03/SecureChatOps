@@ -4,6 +4,7 @@ RUN mkdir -p /usr/src/freeapi && chown -R node:node /usr/src/freeapi
 
 WORKDIR /usr/src/freeapi
 
+COPY .env.sample .env
 # Copy package json and yarn lock only to optimise the image building
 COPY package.json yarn.lock ./
 
