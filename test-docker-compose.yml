@@ -1,0 +1,36 @@
+services:
+  frontend-chatops:
+    image: frontend-test
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    container_name: chatapp-frontend
+    networks:
+      - freeapi-internal
+
+  backend-chatops:
+    image: backend-test
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    container_name: freeapi-intrval
+    networks:
+      - freeapi-internal
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    volumes:
+      - db-data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - freeapi-internal
+
+networks:
+    freeapi-internal: {}
+
+volumes:
+  db-data: {}
